@@ -28,5 +28,4 @@ class RewardComponentsCallback(BaseCallback):
                 self.logger.record_mean(f"reward_components/{name}", float(value))
             for name, value in counts.items():
                 self.logger.record_mean(f"reward_counts/{name}", float(value))
-            self.logger.record_mean("reward_components/total", sum(components.values()))
         return True

@@ -26,6 +26,9 @@ def test_snapshot_is_independent_and_reset():
     assert tracker.counts["goal"] == 0
 
 
-def test_invalid_component_name():
-    with pytest.raises(ValueError):
-        RewardTracker().add("", 2)
+@pytest.mark.parametrize("name", ["", None, 1])
+def test_invalid_component_name(name):
+    with pytest.raises(ValueError, match="name must be a non-empty string"):
+        RewardTracker([name])
+    with pytest.raises(ValueError, match="name must be a non-empty string"):
+        RewardTracker().add(name, 2)

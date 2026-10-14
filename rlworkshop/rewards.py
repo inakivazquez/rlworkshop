@@ -16,16 +16,23 @@ class RewardTracker:
     """
 
     def __init__(self, names=()):
+        names = tuple(names)
+        for name in names:
+            self._validate_name(name)
         self._names = tuple(dict.fromkeys(names))
         self.reset()
+
+    @staticmethod
+    def _validate_name(name: str) -> None:
+        if not isinstance(name, str) or not name:
+            raise ValueError("name must be a non-empty string")
 
     def reset(self) -> None:
         self.components = defaultdict(float, {key: 0.0 for key in self._names})
         self.counts = defaultdict(int, {key: 0 for key in self._names})
 
     def add(self, name: str, value: float) -> float:
-        if not isinstance(name, str) or not name:
-            raise ValueError("name must be a non-empty string")
+        self._validate_name(name)
         value = float(value)
         self.components[name] += value
         self.counts[name] += 1

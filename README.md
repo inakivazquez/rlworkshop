@@ -88,7 +88,9 @@ Start TensorBoard:
 tensorboard --logdir ./logs/
 ```
 
-Charts appear as `reward_components/<name>`, `reward_components/total`, and `reward_counts/<name>`.
+Charts appear as `reward_components/<name>` and `reward_counts/<name>`. The
+environment's total episodic return is available through SB3's standard
+`rollout/ep_rew_mean` metric when using `Monitor`.
 
 ### Parallel environments and interpretation
 
