@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rlworkshop"
+version = "0.1.0"
+description = "Lightweight utilities for reinforcement learning experimentation"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "RLWorkshop contributors"}]
+keywords = ["reinforcement-learning", "gymnasium", "reward", "tensorboard"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+gym = ["gymnasium>=0.29"]
+sb3 = ["stable-baselines3>=2.0", "tensorboard>=2.0", "gymnasium>=0.29"]
+dev = ["pytest>=7.0", "build>=1.0"]
+
+[tool.setuptools.packages.find]
+include = ["rlworkshop*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
